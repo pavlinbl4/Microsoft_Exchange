@@ -6,13 +6,9 @@ from dotenv import load_dotenv
 import os
 
 
-
-
-
 def make_soup(letter):
     soup = BeautifulSoup(letter, 'lxml')
     return soup.find('body').text.strip()
-
 
 
 def authorization():
@@ -38,10 +34,6 @@ def authorization():
     return account
 
 
-
-
-
-
 def read_email():
     inbox = authorization().inbox
     for item in inbox.all().order_by('-datetime_received')[:5]:
@@ -52,10 +44,7 @@ def read_email():
         print(Fore.YELLOW + item.subject)
         print()
         # print(item.to_recipients)
-
-        # print(item.subject, item.body, item.datetime_received)
-        #     print(item.subject,  item.sender.email_address, item.to_recipients)
-        #     print(item.body)
+        # print(item.datetime_received)
         letter = item.body
         print(Fore.WHITE + make_soup(letter))
 

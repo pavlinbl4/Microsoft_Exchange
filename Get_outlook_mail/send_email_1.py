@@ -1,6 +1,6 @@
 from exchangelib import Message, Mailbox
 
-from get_mail.read_outlook import authorization
+from Get_outlook_mail.read_outlook import authorization
 
 m = Message(
     account=authorization(),

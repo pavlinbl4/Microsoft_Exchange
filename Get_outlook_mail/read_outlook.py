@@ -1,7 +1,5 @@
 import exchangelib
 from bs4 import BeautifulSoup
-from icecream import ic
-from colorama import Fore, Back, Style
 from dotenv import load_dotenv
 import os
 
@@ -32,22 +30,3 @@ def authorization():
     )
 
     return account
-
-
-def read_email():
-    inbox = authorization().inbox
-    for item in inbox.all().order_by('-datetime_received')[:5]:
-        print("*" * 100)
-        print()
-        print(Fore.RED + item.sender.name)
-        print(Fore.GREEN + item.sender.email_address)
-        print(Fore.YELLOW + item.subject)
-        print()
-        # print(item.to_recipients)
-        # print(item.datetime_received)
-        letter = item.body
-        print(Fore.WHITE + make_soup(letter))
-
-
-if __name__ == '__main__':
-    read_email()
